@@ -1,7 +1,5 @@
-from django.contrib.auth import get_user_model
 from django.db import models
-
-User = get_user_model()
+from users.models import User
 
 
 class Department(models.Model):
@@ -37,5 +35,5 @@ class Employee(models.Model):
     employee_role = models.ForeignKey(EmployeeRole, on_delete=models.PROTECT)
 
     def __str__(self):
-        return self.employee.last_name
+        return self.employee
 
