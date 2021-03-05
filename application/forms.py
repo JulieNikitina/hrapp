@@ -17,6 +17,7 @@ class AddRecordForm(forms.ModelForm):
             'department',
             'interview_date',
             'time_to_complete',
+            'department_hr',
             'name_hr',
             'position_hr',
         ]

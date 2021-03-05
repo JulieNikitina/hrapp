@@ -9,19 +9,6 @@ class Department(models.Model):
         return self.department_name
 
 
-class Record(models.Model):
-    applicant_name = models.TextField('ФИО соискателя', blank=False, max_length=100)
-    phone_number = models.TextField('телефон соискателя', blank=False, max_length=11)
-    position = models.TextField('должность', blank=False, max_length=30)
-    department = models.ForeignKey(Department, 'подразделение', blank=False, max_length=30)
-    interview_date = models.DateField('дата выдачи тестового задания')
-    time_to_complete = models.PositiveIntegerField('время на выполнение задания')
-    name_hr = models.TextField('ФИО сотрудника, проводившего собеседование', blank=False, max_length=100)
-    position_hr = models.TextField('должность сотрудника, проводившего собеседование', blank=False, max_length=100)
-    date_of_get = models.DateTimeField('дата получения результата тестового задания', blank=True, null=True)
-    head_of_department_name = models.TextField('ФИО руководителя подразделения, получившего результат тестового задания', blank=True, null=True, max_length=100)
-
-
 class EmployeeRole(models.Model):
     role = models.TextField('наименование должности', blank=False, max_length=100)
 
@@ -35,5 +22,22 @@ class Employee(models.Model):
     employee_role = models.ForeignKey(EmployeeRole, on_delete=models.PROTECT)
 
     def __str__(self):
-        return self.employee
+        return self.employee.get_full_name()
+
+
+class Record(models.Model):
+    applicant_name = models.TextField('ФИО соискателя', blank=False, max_length=100)
+    phone_number = models.TextField('телефон соискателя', blank=False, max_length=11)
+    position = models.TextField('должность', blank=False, max_length=30)
+    department = models.ForeignKey(Department, 'подразделение', related_name='applicant_department', blank=False)
+    interview_date = models.DateField('дата выдачи тестового задания')
+    time_to_complete = models.PositiveIntegerField('время на выполнение задания')
+    department_hr = models.ForeignKey(Department, 'название отдела, проводившего собеседование', related_name='hr_department', blank=False,)
+    name_hr = models.ForeignKey(Employee, 'ФИО сотрудника, проводившего собеседование', blank=False, max_length=100)
+    position_hr = models.ForeignKey(EmployeeRole, 'должность сотрудника, проводившего собеседование', blank=False, max_length=100)
+    date_of_get = models.DateTimeField('дата получения результата тестового задания', blank=True, null=True)
+    head_of_department_name = models.TextField('ФИО руководителя подразделения, получившего результат тестового задания', blank=True, null=True, max_length=100)
+
+
+
 
