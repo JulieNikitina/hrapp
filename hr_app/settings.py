@@ -19,14 +19,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'users',
-    'application',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users',
+    'application'
 ]
 
 MIDDLEWARE = [
@@ -117,3 +117,6 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 SITE_ID = 1
 AUTH_USER_MODEL = 'users.User'
+
+LOGIN_URL = "/auth/login/"
+LOGIN_REDIRECT_URL = "index"
