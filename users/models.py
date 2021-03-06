@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, UserManager
+from django.contrib.auth.models import AbstractUser
 
 from users.managers import CustomUserManager
 
@@ -7,10 +7,25 @@ from users.managers import CustomUserManager
 class User(AbstractUser):
     USERNAME_FIELD = 'email'
     username = models.CharField(max_length=40, unique=False, default='')
-    last_name = models.CharField(verbose_name='Фамилия', max_length=20, blank=True)
-    first_name = models.CharField(verbose_name='Имя', max_length=20, blank=True)
-    middle_name = models.CharField(verbose_name='Отчество', max_length=20, blank=True)
-    email = models.EmailField(verbose_name='Адрес электронной\nпочты', unique=True,)
+    last_name = models.CharField(
+        verbose_name='Фамилия',
+        max_length=20,
+        blank=True
+    )
+    first_name = models.CharField(
+        verbose_name='Имя',
+        max_length=20,
+        blank=True
+    )
+    middle_name = models.CharField(
+        verbose_name='Отчество',
+        max_length=20,
+        blank=True
+    )
+    email = models.EmailField(
+        verbose_name='Адрес электронной\nпочты',
+        unique=True,
+    )
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()

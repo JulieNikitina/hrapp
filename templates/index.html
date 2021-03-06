@@ -1,64 +1,28 @@
 {% extends "base.html" %}
-{% block title %} Данные о соискателях {% endblock %}
-{% block header %}
-<h1> Данные о соискателях </h1>
+{% block title %}
+{% if user.is_authenticated %}
+Данные о соискателях
+{% else %}
+HRapp
+{% endif %}
 {% endblock %}
-{% block content %}
+{% block header %}
+{% if user.is_authenticated %}
+<h1> Данные о соискателях </h1>
+{% else %}
+<h1> HRapp - мониторинг выполнения тестовых заданий соискателями </h1>
+<h2> Пожалуйств авторизуйтесь </h2>
+{% endif %}
+{% endblock %}
 {% load static %}
 {% block stylesheet %}
 <link rel='stylesheet' href='{% static "bootstrap/dist/css/bootstrap.css" %}'>
 <link rel='stylesheet' href='{% static "bootstrap/scss/_tables.scss" %}'>
 {% endblock %}
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">ФИО соискателя</th>
-        <th scope="col">Номер телефона соискателя</th>
-        <th scope="col">Претендуемая должность</th>
-        <th scope="col">Подразделение</th>
-        <th scope="col">Дата выдачи тестового задания</th>
-        <th scope="col">Время на выполнение задания</th>
-        <th scope="col">Название отдела, проводившего собеседование</th>
-        <th scope="col">ФИО сотрудника, проводившего собеседование</th>
-        <th scope="col">Должность сотрудника, проводившего собеседование</th>
-        <th scope="col">Дата получения результата тестового задания</th>
-        <th scope="col">ФИО руководителя подразделения, получившего результат тестового задания</th>
-        <th scope="col"></th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for record in records %}
-    <tr>
-        <td>{{record.applicant_name}}</td>
-        <td>{{record.phone_number}}</td>
-        <td>{{record.position}}</td>
-        <td>{{record.department}}</td>
-        <td>{{record.interview_date}}</td>
-        <td>{{record.time_to_complete}} дн.</td>
-        <td>{{record.department_hr}}</td>
-        <td>{{record.name_hr}}</td>
-        <td>{{record.position_hr}}</td>
-        <td>{{record.date_of_get}}</td>
-        <td>{{record.head_of_department_name}}</td>
-        <td>
-            <a class='p-2 text-dark' href='{% url "add_data" record.id %}'>
-                <button type='submit' class='btn btn-primary'>
-                    Внести данные
-                </button>
-            </a>
-            <a class='p-2 text-dark' href='{% url "record_edit" record.id %}'>
-                <button type='submit' class='btn btn-primary'>
-                    Изменить запись
-                </button>
-            </a>
-        </td>
-    </tr>
-    {% endfor %}
-    </tbody>
-</table>
-<a class='p-2 text-dark' href='{% url "add_record" %}'>
-    <button type='submit' class='btn btn-primary'>
-        Добавить запись
-    </button>
-</a>
+{% block content %}
+{% if user.is_authenticated %}
+{% include 'utils/index_card.html' %}
+{% else %}
+{% include 'utils/login_card.html' %}
+{% endif %}
 {% endblock %}
