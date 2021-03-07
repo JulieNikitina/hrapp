@@ -42,12 +42,17 @@ def record_edit(request, record_id):
 
 def add_data(request, record_id):
     record = get_object_or_404(Record, id=record_id)
-    form = EditRecordByHeadOfDepartment(
-        request.POST or None,
-        files=request.FILES or None,
-        instance=record
-    )
-    if form.is_valid():
-        form.save()
-        return redirect('index')
-    return render(request, 'add_data.html', {'form': form, 'record': record})
+    department = record.department
+    user_eployee = get_object_or_404(Employee, employee=request.user)
+    if user_eployee.employee_department == department and user_eployee.employee_role.id == 1:
+        form = EditRecordByHeadOfDepartment(
+            request.POST or None,
+            files=request.FILES or None,
+            instance=record
+        )
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+        return render(request, 'add_data.html', {'form': form, 'record': record})
+    else:
+        return render(request, 'error.html', {'department': department})
