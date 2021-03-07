@@ -7,7 +7,7 @@ from users.models import User
 
 def index(request):
     records = Record.objects.order_by('-interview_date')
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated or request.user.is_superuser:
         return render(request, "index.html", {'records': records})
     user_eployee = get_object_or_404(Employee, employee=request.user)
     return render(request, "index.html", {'records': records, 'user_employee': user_eployee})

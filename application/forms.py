@@ -6,7 +6,11 @@ from .models import Record
 
 
 class AddRecordForm(forms.ModelForm):
-    interview_date = DateField(input_formats=settings.DATE_INPUT_FORMATS)
+    interview_date = DateField(
+        label='Дата выдачи тестового задания',
+        input_formats=settings.DATE_INPUT_FORMATS,
+        help_text='Пожалуйста, используйте поддерживаемый формат: ДД-ММ-ГГГГ.',
+        )
 
     class Meta:
         model = Record
@@ -24,7 +28,12 @@ class AddRecordForm(forms.ModelForm):
 
 
 class EditRecordByHeadOfDepartment(forms.ModelForm):
-    date_of_get = DateField(input_formats=settings.DATE_INPUT_FORMATS)
+    date_of_get = DateField(
+        label='Дата получения выполненного задания',
+        input_formats=settings.DATE_INPUT_FORMATS,
+        help_text='Пожалуйста, используйте поддерживаемый формат: ДД-ММ-ГГГГ.',
+
+        )
 
     class Meta:
         model = Record
