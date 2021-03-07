@@ -31,12 +31,14 @@
         <td>{{record.date_of_get}}</td>
         <td>{{record.head_of_department_name}}</td>
         <td>
+             {% if user_employee.employee_department.id == record.department.id and user_employee.employee_role.id == 1%}
             <a class='p-2 text-dark' href='{% url "add_data" record.id %}'>
                 <button type='submit' class='btn btn-primary'>
                     Внести данные
                 </button>
             </a>
-            {% if button %}
+            {% endif %}
+            {% if user_employee.employee_department.id == 1 %}
             <a class='p-2 text-dark' href='{% url "record_edit" record.id %}'>
                 <button type='submit' class='btn btn-primary'>
                     Изменить запись
@@ -45,10 +47,10 @@
             {% endif %}
         </td>
     </tr>
-    {% endfor %}
+    {% endfor%}
     </tbody>
 </table>
-{% if button %}
+{% if user_employee.employee_department.id == 1 %}
 <a class='p-2 text-dark' href='{% url "add_record" %}'>
     <button type='submit' class='btn btn-primary'>
         Добавить запись

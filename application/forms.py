@@ -30,5 +30,4 @@ class EditRecordByHeadOfDepartment(forms.ModelForm):
         model = Record
         fields = [
             'date_of_get',
-            'head_of_department_name'
         ]

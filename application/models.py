@@ -36,7 +36,7 @@ class Record(models.Model):
     name_hr = models.ForeignKey(Employee, 'ФИО сотрудника, проводившего собеседование', blank=False, max_length=100)
     position_hr = models.ForeignKey(EmployeeRole, 'должность сотрудника, проводившего собеседование', blank=False, max_length=100)
     date_of_get = models.DateTimeField('дата получения результата тестового задания', blank=True, null=True)
-    head_of_department_name = models.TextField('ФИО руководителя подразделения, получившего результат тестового задания', blank=True, null=True, max_length=100)
+    head_of_department_name = models.ForeignKey(User, 'ФИО руководителя подразделения, получившего результат тестового задания', blank=True, null=True)
 
 
 
