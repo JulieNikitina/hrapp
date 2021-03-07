@@ -36,19 +36,22 @@
                     Внести данные
                 </button>
             </a>
+            {% if button %}
             <a class='p-2 text-dark' href='{% url "record_edit" record.id %}'>
                 <button type='submit' class='btn btn-primary'>
                     Изменить запись
                 </button>
             </a>
+            {% endif %}
         </td>
     </tr>
     {% endfor %}
     </tbody>
 </table>
-
+{% if button %}
 <a class='p-2 text-dark' href='{% url "add_record" %}'>
     <button type='submit' class='btn btn-primary'>
         Добавить запись
     </button>
 </a>
+{% endif %}

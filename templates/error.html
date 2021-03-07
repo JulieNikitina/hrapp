@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}
+Ошибка доступа
+{% endblock %}
+{% block header %}
+<h1> Ошибка прав доступа. </h1>
+<h2> Вы не можете выполнять данное действие </h2>
+{% endblock %}
+{% load static %}
+{% block stylesheet %}
+<link rel='stylesheet' href='{% static "bootstrap/dist/css/bootstrap.css" %}'>
+<link rel='stylesheet' href='{% static "bootstrap/scss/_tables.scss" %}'>
+{% endblock %}

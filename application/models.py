@@ -17,9 +17,9 @@ class EmployeeRole(models.Model):
 
 
 class Employee(models.Model):
-    employee = models.ForeignKey(User, on_delete=models.CASCADE)
-    employee_department = models.ForeignKey(Department, on_delete=models.PROTECT, related_name='where_work')
-    employee_role = models.ForeignKey(EmployeeRole, on_delete=models.PROTECT)
+    employee = models.ForeignKey(User, on_delete=models.CASCADE, related_name='worker')
+    employee_department = models.ForeignKey(Department, on_delete=models.PROTECT, related_name='department')
+    employee_role = models.ForeignKey(EmployeeRole, on_delete=models.PROTECT, related_name='position')
 
     def __str__(self):
         return self.employee.get_full_name()
