@@ -7,10 +7,13 @@ from users.models import User
 
 def index(request):
     records = Record.objects.order_by('-interview_date')
-    if not request.user.is_authenticated or request.user.is_superuser:
+    if not request.user.is_authenticated:
         return render(request, "index.html", {'records': records})
-    user_eployee = get_object_or_404(Employee, employee=request.user)
-    return render(request, "index.html", {'records': records, 'user_employee': user_eployee})
+    check_user = Employee.objects.filter(employee=request.user)
+    if not check_user:
+        return render(request, "index.html", {'records': records})
+    user_employee = get_object_or_404(Employee, employee=request.user)
+    return render(request, "index.html", {'records': records, 'user_employee': user_employee})
 
 
 def add_record(request):
