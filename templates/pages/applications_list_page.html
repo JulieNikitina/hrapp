@@ -1,0 +1,72 @@
+{% load static %}
+
+{% block content %}
+<link rel='stylesheet' href='{% static "bootstrap/scss/_tables.scss" %}'>
+
+<div class="page_content">
+    <div class="table_header">
+        <h3> Данные о соискателях </h3>
+        {% if user_employee.employee_department.id == 1 %}
+        <a class='p-2 text-dark primary_button' href='{% url "add_record" %}'>
+            <button type='submit' class='btn btn-primary btn-primary-custom'>
+                Добавить запись
+            </button>
+        </a>
+        {% endif %}
+    </div>
+    <div class="table_content">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Cоискатель</th>
+                <th scope="col">Телефон</th>
+                <th scope="col">Вакансия</th>
+                <th scope="col">Отдел</th>
+                <th scope="col">Выдано</th>
+                <th scope="col">Срок</th>
+                <th scope="col">Интервьюер</th>
+                <th scope="col">Принято</th>
+                <th scope="col">Дата</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for record in records %}
+            <tr>
+                <td>{{record.applicant_name}}</td>
+                <td>{{record.phone_number}}</td>
+                <td>{{record.position}}</td>
+                <td>{{record.department}}</td>
+                <td>
+                    <span class="inline_text">{{record.interview_date}}</span>
+                </td>
+                <td>{{record.time_to_complete}} дн.</td>
+                <td>{{record.name_hr}} {{record.position_hr}} {{record.department_hr}}</td>
+                <td>{{record.head_of_department_name}}</td>
+                <td>
+                    <span class="inline_text">{{record.date_of_get}}</span>
+                </td>
+                <td>
+                    {% if user_employee.employee_department.id == record.department.id and user_employee.employee_role.id == 1%}
+                    <a class='p-2 text-dark' href='{% url "add_data" record.id %}'>
+                        <button type='submit' class='btn btn-primary btn-primary-custom'>
+                            Принять
+                        </button>
+                    </a>
+                    {% endif %}
+                    {% if user_employee.employee_department.id == 1 %}
+                    <a class='p-2 text-dark' href='{% url "record_edit" record.id %}'>
+                        <button type='submit' class='btn btn-primary btn-primary-custom'>
+                            Изменить
+                        </button>
+                    </a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -2,8 +2,13 @@
 <html>
 <head>
     <title>
-        {% block title %} {% endblock %} | HR-app
+        {% block title %} {% endblock %} | HRapp
     </title>
+
+    {% load static %}
+    <link rel='stylesheet' href='{% static "bootstrap/dist/css/bootstrap.css" %}'>
+    <link rel='stylesheet' href='{% static "css/styles.css" %}'>
+
     {% block stylesheet %}
     <!-- Стили -->
     {% endblock %}
@@ -11,11 +16,13 @@
 <body>
 {% include 'utils/nav.html' %}
 <main>
-    {% block header %}
-    {% endblock %}
     {% block content %}
     {% endblock %}
 </main>
 {% include 'utils/footer.html' %}
+<script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+{% block scripts %}
+<!-- JavaScripts -->
+{% endblock %}
 </body>
 </html>

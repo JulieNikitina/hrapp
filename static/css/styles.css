@@ -1,0 +1,36 @@
+.logo_highlight {
+    color: #007e39;
+}
+
+.page_content {
+    padding: 0 20px;
+    margin: 20px auto;
+    max-width: 1300px;
+}
+
+.inline_text {
+    white-space: nowrap;
+}
+
+.table_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.table_content {
+    margin-top: 20px;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.btn-primary-custom {
+    color: #212529;
+    border: 2px solid #007e39;
+    background-color: #f8f9fa;
+}
+
+.btn-primary-custom:hover {
+    background-color: #007e39;
+    border: 2px solid #007e39;
+}

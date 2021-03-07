@@ -1,28 +1,8 @@
 {% extends "base.html" %}
-{% block title %}
-{% if user.is_authenticated %}
-Данные о соискателях
-{% else %}
-HRapp
-{% endif %}
-{% endblock %}
-{% block header %}
-{% if user.is_authenticated %}
-<h1> Данные о соискателях </h1>
-{% else %}
-<h1> HRapp - мониторинг выполнения тестовых заданий соискателями </h1>
-<h2> Пожалуйств авторизуйтесь </h2>
-{% endif %}
-{% endblock %}
-{% load static %}
-{% block stylesheet %}
-<link rel='stylesheet' href='{% static "bootstrap/dist/css/bootstrap.css" %}'>
-<link rel='stylesheet' href='{% static "bootstrap/scss/_tables.scss" %}'>
-{% endblock %}
 {% block content %}
 {% if user.is_authenticated %}
-{% include 'utils/index_card.html' %}
+{% include 'pages/applications_list_page.html' %}
 {% else %}
-{% include 'utils/login_card.html' %}
+{% include 'pages/login_page.html' %}
 {% endif %}
 {% endblock %}

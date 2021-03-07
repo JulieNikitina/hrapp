@@ -1,17 +1,31 @@
-<nav class="nav">
-    <div class="nav__container container">
-        {% if user.is_authenticated %}
-        <ul class="nav__items list">
-            <li class="nav__item nav__link link">Пользователь: {{ user.get_full_name }}</li>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <span class="navbar-brand">
+        {% include "utils/logo.html" %}
+    </span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            {% if user.is_authenticated %}
+            <li> Пользователь: {{ user.get_full_name }} | Отдел: {{ user_employee.employee_department }} | {{user_employee.employee_role}}</li>
+            {% endif %}
         </ul>
-        <ul class="nav__items list">
-            <li class="nav__item"><a href='{% url "password_change" %}' class="nav__link link">Изменить пароль</a></li>
-            <li class="nav__item"><a href='{% url "logout" %}' class="nav__link link">Выход</a></li>
+        <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+            <li class="mr-2">
+                <a href='{% url "password_change" %}' class="nav__link link">Изменить пароль</a>
+            </li>
+            <li>
+                <a href='{% url "logout" %}' class="nav__link link">Выход</a>
+            </li>
+            {% else %}
+            <li>
+                <a href='{% url "login" %}' class="nav__link link">Войти</a>
+            </li>
+            {% endif %}
         </ul>
-        {% else %}
-        <ul class="nav__items list">
-            <li class="nav__item"><a href='{% url "login" %}' class="nav__link link">Войти</a></li>
-        </ul>
-        {% endif %}
     </div>
 </nav>

@@ -23,7 +23,7 @@ def add_record(request):
         if form.is_valid():
             form.save()
             return redirect('index')
-        return render(request, 'add_record.html', {'form': form,})
+        return render(request, 'pages/add_record_page.html', {'form': form,})
     else:
         return render(request, 'error.html', {'department': department})
 
@@ -40,7 +40,7 @@ def record_edit(request, record_id):
         if form.is_valid():
             form.save()
             return redirect('index')
-        return render(request, 'add_record.html', {'form': form, 'record': record})
+        return render(request, 'pages/add_record_page.html', {'form': form, 'record': record})
     else:
         return render(request, 'error.html', {'department': department})
 
@@ -60,6 +60,6 @@ def add_data(request, record_id):
             form.instance.head_of_department_name = request.user
             form.save()
             return redirect('index')
-        return render(request, 'add_data.html', {'form': form, 'record': record, 'button': button})
+        return render(request, 'pages/add_data_page.html', {'form': form, 'record': record, 'button': button})
     else:
         return render(request, 'error.html', {'department': department})
