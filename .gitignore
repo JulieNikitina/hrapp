@@ -1,6 +1,7 @@
 .idea
-venv
 .env
+venv
+hr_app/.env
 db.sqlite3
 application/migrations
 users/migrations

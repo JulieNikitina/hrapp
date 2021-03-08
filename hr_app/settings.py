@@ -1,23 +1,20 @@
-
 import os
+import environ
 
+env = environ.Env()
+environ.Env.read_env()
+
+IS_DEV = env('IS_DEV') is not None
+SECRET_KEY = env('SECRET_KEY')
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'z^aw(29r9@#ic9&e_0+l04%b04nn+b#0iq*&h88&r8epzze2&p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = [
-        "localhost",
-        "127.0.0.1",
+    "localhost",
+    "127.0.0.1",
 ]
-
 
 # Application definition
 
@@ -63,18 +60,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'hr_app.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+} if IS_DEV else {
+    'default': env.db(),
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -94,7 +90,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -108,11 +103,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = None if IS_DEV else os.path.join(BASE_DIR, 'static/')
 STATICFILES_DIRS = (
     os.path.join('static'),
 )
@@ -124,4 +119,3 @@ AUTH_USER_MODEL = 'users.User'
 
 LOGIN_URL = "/auth/login/"
 LOGIN_REDIRECT_URL = "index"
-
