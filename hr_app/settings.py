@@ -6,6 +6,7 @@ environ.Env.read_env()
 
 IS_DEV = env('IS_DEV') is 'true'
 SECRET_KEY = env('SECRET_KEY')
+SERVER_HOST = env('SERVER_HOST')
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -13,7 +14,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "localhost",
-    "127.0.0.1",
+    SERVER_HOST
 ]
 
 # Application definition
