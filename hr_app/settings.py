@@ -4,7 +4,7 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
-IS_DEV = env('IS_DEV') is not None
+IS_DEV = env('IS_DEV') is 'true'
 SECRET_KEY = env('SECRET_KEY')
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
