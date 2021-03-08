@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <span class="navbar-brand">
-        {% include "utils/logo.html" %}
+        <a href="/" class="link-no-style">
+            {% include "utils/logo.html" %}
+        </a>
     </span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,7 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             {% if user.is_authenticated %}
-            <li> Пользователь: {{ user.get_full_name }} | Отдел: {{ user_employee.employee_department }} | {{user_employee.employee_role}}</li>
+            <li> | Пользователь: {{ user.get_full_name }} |</li>
             {% endif %}
         </ul>
         <ul class="navbar-nav">

@@ -9,6 +9,8 @@ def index(request):
     records = Record.objects.order_by('-interview_date')
     if not request.user.is_authenticated:
         return render(request, "index.html", {'records': records})
+    else:
+        redirect('login')
     check_user = Employee.objects.filter(employee=request.user)
     if not check_user:
         return render(request, "index.html", {'records': records})
@@ -63,3 +65,16 @@ def add_data(request, record_id):
         return render(request, 'pages/add_data_page.html', {'form': form, 'record': record, 'button': button})
     else:
         return render(request, 'error.html', {'department': department})
+
+
+def page_not_found(request, exception):
+    return render(
+        request,
+        'templates/misc/404.html',
+        {'path': request.path},
+        status=404
+    )
+
+
+def server_error(request):
+    return render(request, 'templates/misc/500.html', status=500)

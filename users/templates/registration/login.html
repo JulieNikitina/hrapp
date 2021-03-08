@@ -7,31 +7,31 @@
 {% block content %}
 {% load user_filters %}
 
-<main class="main container">
-    <div class="main__header">
+<main class="main container login_page_content">
+    <div class="main__header login_page_header">
         <h1 class="main__title">Войти на сайт</h1>
     </div>
     <div class="form-container">
-        <form class="form" method='post' action='{% url "login" %}'>
+        <form class="form login_page_form" method='post' action='{% url "login" %}'>
             {% csrf_token %}
             <div class="form__group">
-                <label for="id_username" class="form__label">Имя пользователя</label>
+                <label for="id_username" class="form__label">Email</label>
                 <div class="form__field-group">
-                    <input type="text" name="username" id="id_username" class="form__input">
+                    <input type="text" name="username" id="id_username" class="form__input form-control">
                     <span class="form__error"></span>
                 </div>
             </div>
             <div class="form__group">
                 <label for="id_password" class="form__label">Пароль</label>
                 <div class="form__field-group">
-                    <input type="password" name="password" id="id_password" class="form__input">
+                    <input type="password" name="password" id="id_password" class="form__input form-control">
                     {% if form.errors %}
                     <span class="form__error">Имя пользователя и пароль не совпадают. Введите правильные данные.</span>
                     {% endif %}
                 </div>
             </div>
-            <div class="form__footer">
-                <button class="button button_style_blue">Войти</button>
+            <div class="form__footer login_page_footer">
+                <button class="btn btn-primary btn-primary-custom">Войти</button>
                 <a href='{% url "password_reset" %}' class="form__forgot-link">Забыли пароль?</a>
             </div>
         </form>

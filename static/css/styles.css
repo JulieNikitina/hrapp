@@ -1,3 +1,23 @@
+.link-no-style {
+    color: #212529;
+    text-decoration: none !important;
+}
+
+.link-no-style :active {
+    color: #212529;
+    text-decoration: none !important;
+}
+
+.link-no-style :hover {
+    color: #212529;
+    text-decoration: none !important;
+}
+
+.link-no-style :visited {
+    color: #212529;
+    text-decoration: none !important;
+}
+
 .logo_highlight {
     color: #007e39;
 }
@@ -33,4 +53,56 @@
 .btn-primary-custom:hover {
     background-color: #007e39;
     border: 2px solid #007e39;
+}
+
+.form_style {
+    align-items: center;
+    margin-top: 20px;
+    max-width: 100%;
+}
+
+.login_page_content {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login_page_header {
+    margin-bottom: 1.5rem;
+}
+
+.login_page_form .form__group {
+    margin-bottom: 1rem;
+}
+
+.login_page_footer > * + * {
+     margin-left: 1rem;
+}
+
+.logout_page_content {
+    margin-top: 3rem;
+}
+
+.password_change_page_content .form__group {
+    margin-bottom: 1rem;
+}
+
+.password_change_page_header {
+    margin: 1.5rem 0;
+}
+
+.password_change_page_content {
+    margin: 0 auto;
+    padding: 0 2rem;
+    max-width: 40rem;
+}
+
+.password_change_page_content_help ul {
+    margin-top: .5rem;
+}
+
+.password_change_page_footer {
+    display: flex;
+    justify-content: center;
 }
