@@ -1,3 +1,7 @@
 .idea
 venv
 .env
+db.sqlite3
+application/migrations
+users/migrations
+*.pyc
