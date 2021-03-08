@@ -8,8 +8,7 @@
 {% endblock %}
 {% load static %}
 {% block stylesheet %}
-<link rel='stylesheet' href='{% static "bootstrap/dist/css/bootstrap.css" %}'>
-<link rel='stylesheet' href='{% static "bootstrap/scss/_forms.scss" %}'>
+<link rel='stylesheet' href='{% static "bootstrap/scss/_forms.css" %}'>
 {% endblock %}
 {% block header %}
 {% if record %}
@@ -39,13 +38,13 @@
                 <form method='post' enctype='multipart/form-data'>
                     {% csrf_token %}
                     {% for field in form %}
-                    <div class="form__group">
+                    <div class="form__group add_record_page_field">
                         <label for='{{ field.id_for_label }}' class="form__label">
                             {{ field.label }}{% if field.field.required %}
                             <span class='required'>*</span>{% endif %}
                         </label>
                         <div class="form__field-group">
-                            {{ field|addclass:"form__input" }}
+                            {{ field|addclass:"form__input form-control" }}
                             {% if form.errors %}
                             {% for error in field.errors %}
                             <span class="form__error">{{ error|escape }}</span>
@@ -60,7 +59,7 @@
                     </div>
                     {% endfor %}
                     <div class="form__footer">
-                        <button class="button button_style_blue">
+                        <button class="btn btn-primary btn-primary-custom">
                             {% if record %}
                             Редактировать запись
                             {% else %}

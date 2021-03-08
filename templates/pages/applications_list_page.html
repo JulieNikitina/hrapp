@@ -46,7 +46,7 @@
                 <td>
                     <span class="inline_text">{{record.date_of_get}}</span>
                 </td>
-                <td>
+                <td class="table_content_buttons">
                     {% if user_employee.employee_department.id == record.department.id and user_employee.employee_role.id == 1%}
                     <a class='p-2 text-dark' href='{% url "add_data" record.id %}'>
                         <button type='submit' class='btn btn-primary btn-primary-custom'>
