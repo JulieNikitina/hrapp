@@ -41,7 +41,7 @@ class Employee(models.Model):
         related_name='position')
 
     def __str__(self):
-        return self.employee.get_full_name()
+        return f' {self.employee.get_full_name()} {self.employee_role} {self.employee_department}'
 
 
 class Record(models.Model):

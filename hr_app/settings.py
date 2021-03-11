@@ -13,11 +13,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost',
+    "localhost",
     SERVER_HOST
 ]
-
-# Application definition
 
 INSTALLED_APPS = [
     'users',
@@ -118,5 +116,5 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 SITE_ID = 1
 AUTH_USER_MODEL = 'users.User'
 
-LOGIN_URL = '/auth/login/'
+LOGIN_URL = "/auth/login/"
 LOGIN_REDIRECT_URL = "index"
